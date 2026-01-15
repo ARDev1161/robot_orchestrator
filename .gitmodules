@@ -1,0 +1,23 @@
+[submodule "robot_planner"]
+	path = robot_planner
+	url = git@github.com:ARDev1161/robot_planner.git
+[submodule "ros2_rknn_llm"]
+	path = ros2_rknn_llm
+	url = git@github.com:ARDev1161/ros2_rknn_llm.git
+[submodule "mapannotator"]
+	path = mapannotator
+	url = git@github.com:ARDev1161/mapannotator.git
+[submodule "rc_agent"]
+	path = rc_agent
+	url = git@github.com:ARDev1161/rc_agent.git
+[submodule "gscam2"]
+	path = gscam2
+	url = git@github.com:clydemcqueen/gscam2.git
+[submodule "plansys2_upf_plugin"]
+	path = plansys2_upf_plugin
+	url = git@github.com:JRL-CARI-CNR-UNIBS/plansys2_upf_plugin.git
+	branch = jazzy-devel
+[submodule "ros-gst-bridge"]
+	path = ros-gst-bridge
+	url = git@github.com:BrettRD/ros-gst-bridge.git
+	branch = ros2
