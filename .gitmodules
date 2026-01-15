@@ -21,3 +21,9 @@
 	path = ros-gst-bridge
 	url = git@github.com:BrettRD/ros-gst-bridge.git
 	branch = ros2
+[submodule "ros2_piper_tts"]
+	path = ros2_piper_tts
+	url = git@github.com:ARDev1161/ros2_piper_tts.git
+[submodule "audio_nav2"]
+	path = audio_nav2
+	url = git@github.com:ARDev1161/audio_nav2.git
