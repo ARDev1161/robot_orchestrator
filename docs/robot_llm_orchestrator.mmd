@@ -1,0 +1,10 @@
+flowchart TD
+  LCH[robot_llm_orchestrator.launch.py]
+  LCH --> RP[robot_planner/launch/planner.launch.py]
+  LCH --> LLM[ros2_rknn_llm/rkllm_node]
+  LCH --> PS2[plansys2_bringup_launch_monolithic.py]
+
+  LCH --> CFG[launch arguments]
+  CFG -->|model_path| LLM
+  CFG -->|domain_file| RP
+  CFG -->|plansys2 launch args| PS2

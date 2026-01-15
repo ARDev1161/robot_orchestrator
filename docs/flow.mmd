@@ -1,0 +1,18 @@
+flowchart TD
+  User((User)) -->|text| ASR[/rkllm_node/user_text/]
+  ASR --> LLM[ros2_rknn_llm\nrkllm_node]
+  MAP[mapannotator] --> PDDLMap[/pddl/map/]
+  PDDLMap --> AGG[pddl_aggregator]
+  AGG --> PROB[/pddl/problem/]
+  PROB --> LLM
+  DomainFile[(domain.pddl)] --> LLM
+  LLM -->|assistant_text JSON| OUT[/rkllm_node/assistant_text/]
+  LLM -->|goals| GOAL[/robot_planner/goal/]
+  GOAL --> GW[robot_planner\nGoalGateway]
+  GW -->|setGoal| PE[PlanSys2\nproblem_expert]
+  PE -->|status| GW
+  GW -->|goal_status| STATUS[/robot_planner/goal_status/]
+  STATUS --> LLM
+  LLM -->|status JSON| OUT
+  PlanSys2[PlanSys2 bringup\nplanner/executor] --> PE
+  PlanSys2 --> EXE[Plan executor/actions]
