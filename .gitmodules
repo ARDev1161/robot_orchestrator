@@ -27,3 +27,6 @@
 [submodule "audio_nav2"]
 	path = audio_nav2
 	url = git@github.com:ARDev1161/audio_nav2.git
+[submodule "ros2_whisper"]
+	path = ros2_whisper
+	url = git@github.com:ARDev1161/ros2_whisper.git
