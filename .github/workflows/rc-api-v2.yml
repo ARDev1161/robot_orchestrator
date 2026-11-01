@@ -1,0 +1,37 @@
+name: RC API v2 orchestrator integration
+
+on:
+  push:
+    branches: [feat/rc-api-v2]
+    paths:
+      - ".gitmodules"
+      - "ros2_rknn_llm"
+      - "tests/**"
+      - ".github/workflows/rc-api-v2.yml"
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pinned-llm-contract:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Resolve pinned LLM submodule over HTTPS
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config --global url."https://github.com/".insteadOf "git@github.com:"
+          git submodule update --init --depth 1 ros2_rknn_llm
+      - name: Ensure pin is the tested feature branch revision
+        shell: bash
+        run: |
+          set -euo pipefail
+          PINNED="$(git rev-parse HEAD:ros2_rknn_llm)"
+          LATEST="$(git ls-remote https://github.com/ARDev1161/ros2_rknn_llm.git refs/heads/feat/rc-api-v2 | cut -f1)"
+          test -n "$LATEST"
+          test "$PINNED" = "$LATEST"
+      - name: Execute status regression tests from pinned version
+        run: python3 -m unittest discover -s ros2_rknn_llm/tests -p 'test_*.py' -v
